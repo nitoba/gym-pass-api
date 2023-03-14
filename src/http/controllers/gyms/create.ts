@@ -21,7 +21,13 @@ export async function create(req: FastifyRequest, res: FastifyReply) {
 
   const createGym = makeCreateGymUseCase()
 
-  await createGym.execute({ title, description, phone, latitude, longitude })
+  const { gym } = await createGym.execute({
+    title,
+    description,
+    phone,
+    latitude,
+    longitude,
+  })
 
-  return res.status(201).send()
+  return res.status(201).send({ gym })
 }

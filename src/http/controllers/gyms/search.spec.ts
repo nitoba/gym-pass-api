@@ -2,7 +2,7 @@
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
 import request from 'supertest'
-describe('Create Gym (e2e)', () => {
+describe('Search Gyms (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -10,11 +10,10 @@ describe('Create Gym (e2e)', () => {
     await app.close()
   })
 
-  it('should be able to create a gym', async () => {
+  it('should be able to search gyms', async () => {
     const { token } = await createAndAuthenticateUser(app)
-    const response = await request(app.server)
+    await request(app.server)
       .post('/gyms')
-      .set('Authorization', `Bearer ${token}`)
       .send({
         title: 'my gym',
         description: 'A awesome gym',
@@ -22,7 +21,15 @@ describe('Create Gym (e2e)', () => {
         latitude: -5.048447,
         longitude: -42.816941,
       })
+      .set('Authorization', `Bearer ${token}`)
 
-    expect(response.statusCode).toEqual(201)
+    const response = await request(app.server)
+      .get('/gyms/search')
+      .query({ query: 'my gym' })
+      .send()
+      .set('Authorization', `Bearer ${token}`)
+
+    expect(response.statusCode).toEqual(200)
+    expect(response.body.gyms[0].title).toBe('my gym')
   })
 })

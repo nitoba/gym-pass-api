@@ -15,6 +15,7 @@ app.register(gymsRoutes)
 app.register(checkInsRoutes)
 app.setErrorHandler((error, _, res) => {
   if (isZodError(error)) {
+    console.log(error)
     return res.status(400).send({ errors: error.formErrors.fieldErrors })
   }
 
@@ -23,6 +24,8 @@ app.setErrorHandler((error, _, res) => {
   } else {
     // TODO: handle with error using monitoring service instead
   }
+
+  console.log(error)
 
   res.status(500).send({ message: 'Internal Server Error' })
 })

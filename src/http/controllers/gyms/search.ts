@@ -14,5 +14,5 @@ export async function search(req: FastifyRequest, res: FastifyReply) {
 
   const { gyms } = await searchGymUseCase.execute({ query, page })
 
-  return res.send(gyms)
+  return res.send({ gyms })
 }

@@ -30,5 +30,7 @@ export async function validate(req: FastifyRequest, res: FastifyReply) {
     if (error instanceof LateCheckInValidationError) {
       return res.status(409).send({ message: error.message })
     }
+
+    throw error
   }
 }
