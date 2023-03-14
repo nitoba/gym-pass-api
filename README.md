@@ -22,12 +22,12 @@ Gym pass style app api
 - [x] O usuário não pode fazer dois check-ins no mesmo dia
 - [x] O usuário não pode fazer check-in se não estiver a 100 metros da academia
 - [x] O check-in só pode ser validado em até 20 minutos após criado
-- [ ] O check-in só pode ser validado por administradores
-- [ ] A academia só pode ser cadastrada por administradores
+- [x] O check-in só pode ser validado por administradores
+- [x] A academia só pode ser cadastrada por administradores
 
 ## (RNFs) Requisitos não funcionais - Requisitos que não partem do cliente, requisitos técnicos (ferramentas eg.)
 
 - [x] A senha do usuário precisa está criptografada
 - [x] Os dados da aplicação devem está persistidos em um banco PostgreSQL
 - [x] Todas as listas de dados devem estar paginados com 20 items por página
-- [ ] O usuário deve ser identificado por um Json Web Token
+- [x] O usuário deve ser identificado por um Json Web Token
